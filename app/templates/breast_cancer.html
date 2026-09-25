@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Breast Cancer Prediction{% endblock %}
+{% block content %}
+<h2>🎗️ Breast Cancer Prediction</h2>
+<p>Enter the diagnostic cell-nuclei measurements below (from imaging report).</p>
+
+<form class="predict-form" method="POST">
+    <div class="form-grid">
+        <div class="field">
+            <label for="sex">Sex</label>
+            <select name="sex" id="sex" required>
+                <option value="" selected disabled>Select sex</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        {% for f in fields %}
+        <div class="field">
+            <label for="{{ f }}">{{ f }}</label>
+            <input type="number" step="any" name="{{ f }}" id="{{ f }}" required>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <button class="btn" type="submit">Predict</button>
+</form>
+<p class="form-note">Sex is recorded with your prediction. The current breast cancer model uses the diagnostic measurements shown above.</p>
+{% endblock %}

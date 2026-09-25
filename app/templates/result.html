@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Prediction Result{% endblock %}
+{% block content %}
+<div class="result-box">
+    <h2>{{ disease }} Prediction Result</h2>
+    <div class="result-badge {{ 'positive' if result == 'Positive' else 'negative' }}">
+        {{ result }}
+    </div>
+
+    {% if result == 'Positive' %}
+        <p>The model indicates a higher likelihood of {{ disease }}. Please consult a qualified doctor for confirmation and treatment.</p>
+        <div class="hospital-list">
+            <h3>Hospital Recommendations</h3>
+            <p class="recommendation-note">Based on your result, these hospitals match the relevant medical specialty and are ranked by rating.</p>
+            {% if hospitals %}
+            {% for h in hospitals %}
+                <div class="hospital-card">
+                    <div>
+                        <strong>{{ h.name }}</strong>
+                        <span>{{ h.specialty }} &middot; {{ h.city }}</span>
+                    </div>
+                    <b class="hospital-rating">{{ h.rating }}/5</b>
+                </div>
+            {% endfor %}
+            {% else %}
+            <p>No matching hospitals are currently available.</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>The model did not find strong indicators of {{ disease }} based on the values provided. This is not a medical diagnosis &mdash; please consult a doctor for any health concerns.</p>
+    {% endif %}
+
+    <br>
+    <a class="btn" href="{{ back_url }}">Try Another Prediction</a>
+</div>
+{% endblock %}

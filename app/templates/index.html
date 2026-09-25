@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Home | MediPredict{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Disease Prediction Application</h1>
+    <p>Machine-learning-based screening for Heart Disease, Diabetes, and Breast Cancer &mdash; with hospital recommendations for positive results.</p>
+</section>
+
+<div class="card-grid">
+    <div class="card">
+        <h3>❤️ Heart Disease</h3>
+        <p>Predict the likelihood of heart disease using clinical parameters such as blood pressure, cholesterol, and ECG results.</p>
+        <a class="btn" href="{{ url_for('heart') }}">Start Prediction</a>
+    </div>
+    <div class="card">
+        <h3>🩸 Diabetes</h3>
+        <p>Predict the likelihood of diabetes using glucose level, BMI, insulin, and related health metrics.</p>
+        <a class="btn" href="{{ url_for('diabetes') }}">Start Prediction</a>
+    </div>
+    <div class="card">
+        <h3>🎗️ Breast Cancer</h3>
+        <p>Predict whether a tumor is benign or malignant using cell nuclei measurements from diagnostic imaging.</p>
+        <a class="btn" href="{{ url_for('breast_cancer') }}">Start Prediction</a>
+    </div>
+</div>
+{% endblock %}

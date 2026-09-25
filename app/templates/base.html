@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Disease Prediction Application{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="navbar">
+    <div class="brand"><a href="{{ url_for('home') }}">🩺 MediPredict</a></div>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('heart') }}">Heart</a>
+        <a href="{{ url_for('diabetes') }}">Diabetes</a>
+        <a href="{{ url_for('breast_cancer') }}">Breast Cancer</a>
+        <a href="{{ url_for('history') }}">History</a>
+    </nav>
+</header>
+
+<main class="container">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">
+                {% for msg in messages %}<p>{{ msg }}</p>{% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>Disease Prediction Application Using Machine Learning &mdash; Academic Project</p>
+</footer>
+</body>
+</html>

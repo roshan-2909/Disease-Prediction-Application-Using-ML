@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Prediction History{% endblock %}
+{% block content %}
+<h2>📋 Prediction History</h2>
+<table class="history-table">
+    <thead>
+        <tr><th>ID</th><th>Disease</th><th>Result</th><th>Date/Time</th></tr>
+    </thead>
+    <tbody>
+    {% for r in records %}
+        <tr>
+            <td>{{ r['id'] }}</td>
+            <td>{{ r['disease_type'] }}</td>
+            <td>{{ r['result'] }}</td>
+            <td>{{ r['created_at'] }}</td>
+        </tr>
+    {% else %}
+        <tr><td colspan="4">No predictions logged yet.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
